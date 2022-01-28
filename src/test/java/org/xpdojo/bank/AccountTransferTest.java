@@ -15,4 +15,15 @@ public class AccountTransferTest {
         sendingAccount.transfer(30, receivingAccount);
         assertThat(sendingAccount.balance()).isEqualTo(70);
     }
+
+
+    @Test
+    public void transfersIncreaseTheReceivingAccountBalance() {
+        Account sendingAccount = emptyAccount() ;
+        Account receivingAccount = emptyAccount() ;
+        sendingAccount.deposit(100);
+        sendingAccount.transfer(30, receivingAccount);
+        assertThat(receivingAccount.balance()).isEqualTo(30);
+    }
+
 }

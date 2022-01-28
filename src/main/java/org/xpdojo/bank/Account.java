@@ -26,5 +26,6 @@ public class Account {
 
     public void transfer(int amount, Account receivingAccount) {
         withdraw(amount);
+        receivingAccount.deposit(amount);
     }
 }
