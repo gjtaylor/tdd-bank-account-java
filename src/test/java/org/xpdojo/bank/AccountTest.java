@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import static org.assertj.core.api.Assertions.extractProperty;
 import static org.xpdojo.bank.Account.emptyAccount;
 
 public class AccountTest {
@@ -15,22 +13,6 @@ public class AccountTest {
         assertThat(emptyAccount().balance()).isEqualTo(0);
     }
 
-
-    @Test
-    public void depositingAnAmountShouldIncreaseTheBalanceByTheSameAmount() {
-        Account account = emptyAccount();
-        account.deposit(10);
-        assertThat(account.balance()).isEqualTo(10);
-    }
-
-    @Test
-    public void depositMultipleAmounts() {
-        Account account = emptyAccount();
-        account.deposit(10);
-        account.deposit(20);
-        assertThat(account.balance()).isEqualTo(30);
-    }
-
     @Test
     @Disabled // important to check this, but might take time
     public void balancesDoNotOverflow() {
@@ -38,28 +20,6 @@ public class AccountTest {
         account.deposit(Integer.MAX_VALUE);
         account.deposit(1);
         assertThat(account.balance()).isGreaterThan(0);
-    }
-
-    @Test
-    public void withdrawingAnAmountShouldDecreaseTheBalanceByTheSameAmount() {
-        Account account = emptyAccount();
-        account.deposit(50);
-        account.withdraw(10);
-        assertThat(account.balance()).isEqualTo(40) ;
-    }
-
-    @Test
-    public void withdrawMultipleAmounts() {
-        Account account = emptyAccount() ;
-        account.deposit(50);
-        account.withdraw(10);
-        account.withdraw(15);
-        assertThat(account.balance()).isEqualTo(25);
-    }
-
-    @Test
-    @Disabled // is this wanted behaviour?
-    public void amountsGreaterThanTheBalanceCannotBeWithdrawn() {
     }
 
 }
