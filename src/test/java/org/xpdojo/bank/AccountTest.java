@@ -48,4 +48,18 @@ public class AccountTest {
         assertThat(account.balance()).isEqualTo(40) ;
     }
 
+    @Test
+    public void withdrawMultipleAmounts() {
+        Account account = emptyAccount() ;
+        account.deposit(50);
+        account.withdraw(10);
+        account.withdraw(15);
+        assertThat(account.balance()).isEqualTo(25);
+    }
+
+    @Test
+    @Disabled // is this wanted behaviour?
+    public void amountsGreaterThanTheBalanceCannotBeWithdrawn() {
+    }
+
 }
